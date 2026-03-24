@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finite Automata Generator</title>
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <div class="header-content">
+          <div class="logo">
+            <!-- <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg> -->
+            <h1>Grammar<span>to</span><span>Graph</span></h1>
+          </div>
+          <p class="subtitle">Convert Regular Grammar to Minimal DFA Instantly</p>
+        </div>
+      </header>
+
+      <main class="container">
+        <!-- Input Section -->
+        <section class="panel input-panel">
+          <div class="panel-header">
+            <h2>Grammar Input</h2>
+          </div>
+          <div class="panel-body">
+            <p class="description">Enter your grammar rules below. Use <code>-></code> or <code>=</code> for rules. Use <code>|</code> for multiple options. Use <code>ε</code> for epsilon.</p>
+            <textarea id="grammar-input" rows="8" spellcheck="false" placeholder="S -> aA | bB | ε&#10;A -> aS | bAA&#10;B -> bS | a"></textarea>
+            <div class="actions">
+              <button id="generate-btn" class="primary-btn">Generate Automata <span>→</span></button>
+            </div>
+            
+            <div id="error-message" class="error-msg hidden"></div>
+          </div>
+        </section>
+
+        <!-- Visualization Section -->
+        <section class="panel vis-panel">
+          <div class="panel-header">
+            <h2>Visualization</h2>
+            <div class="tabs">
+              <button class="tab-btn active" data-target="nfa-view">NFA</button>
+              <button class="tab-btn" data-target="dfa-view">DFA</button>
+              <button class="tab-btn" data-target="min-dfa-view">Minimal DFA</button>
+            </div>
+          </div>
+          
+          <div class="panel-body vis-container">
+            <!-- NFA View -->
+            <div id="nfa-view" class="tab-content active">
+              <div class="no-data">Generate to see results</div>
+              <div class="flex-row graph-and-table hidden">
+                <div class="graph-container">
+                   <h3>Transition Graph</h3>
+                   <div id="nfa-graph" class="mermaid-diagram"></div>
+                </div>
+                <div class="table-container">
+                   <h3>Transition Table</h3>
+                   <div id="nfa-table" class="automata-table"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DFA View -->
+            <div id="dfa-view" class="tab-content">
+              <div class="no-data">Generate to see results</div>
+              <div class="flex-row graph-and-table hidden">
+                <div class="graph-container">
+                   <h3>Transition Graph</h3>
+                   <div id="dfa-graph" class="mermaid-diagram"></div>
+                </div>
+                <div class="table-container">
+                   <h3>Subset Construction Table</h3>
+                   <div id="dfa-table" class="automata-table"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Min DFA View -->
+            <div id="min-dfa-view" class="tab-content">
+              <div class="no-data">Generate to see results</div>
+              <div class="flex-row graph-and-table hidden">
+                <div class="graph-container">
+                   <h3>Transition Graph</h3>
+                   <div id="min-dfa-graph" class="mermaid-diagram"></div>
+                </div>
+                <div class="table-container">
+                   <h3>Optimized Transition Table</h3>
+                   <div id="min-dfa-table" class="automata-table"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+      <footer>
+        <p>Built by Jash Ambaliya, Divy Lathiya, and Vora Deep &copy; 2026</p>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
